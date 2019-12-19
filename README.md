@@ -1,1 +1,1 @@
-# space-exploration-loves-bob
+https://mods.factorio.com/mod/space-exploration-loves-bob
