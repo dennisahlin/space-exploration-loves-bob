@@ -1,11 +1,11 @@
 {
     "name": "space-exploration-loves-bob",
-    "version": "0.17.2",
+    "version": "0.18.0",
     "title": "Space Exploration <3 Bob",
     "author": "Dennis Åhlin",
     "contact": "",
     "homepage": "https://github.com/dennisahlin",
-    "factorio_version": "0.17",
-    "dependencies": ["base >= 0.17", "space-exploration >= 0.1.149", "bobplates >= 0.17.13"],
+    "factorio_version": "0.18",
+    "dependencies": ["base >= 0.18", "space-exploration >= 0.2.1", "bobplates >= 0.18.0"],
     "description": "This mod adds changes that makes Space Exploration and Bobs work better."
 }
