@@ -1,18 +1,18 @@
-function transition_icons(icon_from, icon_to)
+function transition_icons(icon_from, icon_to,icon_from_size,icon_to_size)
   if type(icon_to) == "string" then
     return {
       { icon = "__space-exploration-graphics__/graphics/blank.png", scale = 1, shift = {0, 0}, icon_size = 32 }, -- to lock scale
-      { icon = icon_from, scale = 0.66, shift = {8, -8}, icon_size = 32 },
-      { icon = icon_to, scale = 0.66, shift = {-8, 8}, icon_size = 32 },
+      { icon = icon_from, scale = 0.66*32/icon_from_size, shift = {8, -8}, icon_size = icon_from_size },
+      { icon = icon_to, scale = 0.66*32/icon_to_size, shift = {-8, 8}, icon_size = icon_to_size },
       { icon = "__space-exploration-graphics__/graphics/icons/transition-arrow.png", scale = 1, shift = {0, 0}, icon_size = 32 }, -- to overlay
     }
   else
     local icons = {
       { icon = "__space-exploration-graphics__/graphics/blank.png", scale = 1, shift = {0, 0}, icon_size = 32 }, -- to lock scale
-      { icon = icon_from, scale = 0.66, shift = {8, -8}, icon_size = 32 },
+      { icon = icon_from, scale = 0.66*32/icon_from_size, shift = {8, -8}, icon_size = icon_from_size },
     }
     for _, icon in pairs(icon_to) do
-      table.insert(icons, { icon = icon, scale = 0.5, shift = {-12 + (_-1) * 8, 12}, icon_size = 32 })
+      table.insert(icons, { icon = icon, scale = 0.5*32/icon_to_size, shift = {-12 + (_-1) * 8, 12}, icon_size = icon_to_size })
     end
     table.insert(icons, { icon = "__space-exploration-graphics__/graphics/icons/transition-arrow.png", scale = 1, shift = {0, 0}, icon_size = 32 })
     return icons
@@ -37,9 +37,11 @@ local emptyCanisterReprocessing ={
 	    {
 	      data.raw.item["iron-plate"].icon,
 	      data.raw.item["plastic-bar"].icon
-	    }
+	    },
+      data.raw.item["empty-canister"].icon_size,
+      64
 	  ),
-  	category = "space-recycling",
+    category = "hand-hard-recycling",
   	subgroup = "space-recycling",
   	allow_as_intermediate = false,
     always_show_made_in = true,
@@ -60,9 +62,11 @@ local gasCanisterReprocessing ={
     },
   	icons = transition_icons(
 	    data.raw.item["gas-canister"].icon,
-	    data.raw.item["steel-plate"].icon
+	    data.raw.item["steel-plate"].icon,
+      data.raw.item["gas-canister"].icon_size,
+      data.raw.item["steel-plate"].icon_size
 	  ),
-  	category = "space-recycling",
+  	category = "hand-hard-recycling",
   	subgroup = "space-recycling",
   	allow_as_intermediate = false,
     always_show_made_in = true,
@@ -71,7 +75,7 @@ local gasCanisterReprocessing ={
 
 data:extend{emptyCanisterReprocessing, gasCanisterReprocessing}
 
-local spaceRecyclingFacilityTech = data.raw.technology["se-space-recycling-facility"]
+local spaceRecyclingFacilityTech = data.raw.technology["se-recycling-facility"]
 
 table.insert(spaceRecyclingFacilityTech.effects, { type = "unlock-recipe", recipe = emptyCanisterReprocessing.name })
 table.insert(spaceRecyclingFacilityTech.effects, { type = "unlock-recipe", recipe = gasCanisterReprocessing.name })
