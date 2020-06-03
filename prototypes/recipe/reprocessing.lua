@@ -39,7 +39,7 @@ local emptyCanisterReprocessing ={
 	      data.raw.item["plastic-bar"].icon
 	    }
 	  ),
-  	category = "space-recycling",
+    category = "hand-hard-recycling",
   	subgroup = "space-recycling",
   	allow_as_intermediate = false,
     always_show_made_in = true,
@@ -62,7 +62,7 @@ local gasCanisterReprocessing ={
 	    data.raw.item["gas-canister"].icon,
 	    data.raw.item["steel-plate"].icon
 	  ),
-  	category = "space-recycling",
+  	category = "hand-hard-recycling",
   	subgroup = "space-recycling",
   	allow_as_intermediate = false,
     always_show_made_in = true,
@@ -71,7 +71,7 @@ local gasCanisterReprocessing ={
 
 data:extend{emptyCanisterReprocessing, gasCanisterReprocessing}
 
-local spaceRecyclingFacilityTech = data.raw.technology["se-space-recycling-facility"]
+local spaceRecyclingFacilityTech = data.raw.technology["se-recycling-facility"]
 
 table.insert(spaceRecyclingFacilityTech.effects, { type = "unlock-recipe", recipe = emptyCanisterReprocessing.name })
 table.insert(spaceRecyclingFacilityTech.effects, { type = "unlock-recipe", recipe = gasCanisterReprocessing.name })
